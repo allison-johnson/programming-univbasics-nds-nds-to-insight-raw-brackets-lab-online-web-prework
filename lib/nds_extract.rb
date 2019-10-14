@@ -3,15 +3,17 @@ require 'directors_database'
 require 'pp'
 
 def directors_totals(nds)
-  # Remember, it's always OK to pretty print what you get *in* to make sure
-  # that you know what you're starting with!
-  #
-  #
   # The Hash result be full of things like "Jean-Pierre Jeunet" => "222312123123"
   result = {}
-  
+  nds.each do |director_info|
+    total = 0
+    director_info[:movies].each do |movie|
+      total += movie[:worldwide_gross]
+    end #inner each
+    result[director_info[:name]] = total
+  end #outer each 
   result
-end
+end #method directors_totals
 
-pp directors_database
+#pp directors_database
 
